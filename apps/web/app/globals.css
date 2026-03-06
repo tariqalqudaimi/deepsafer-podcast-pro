@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* 🛸 ربط المكونات المشتركة */
+
 @source "../../../packages/ui/src/**/*.{ts,tsx}";
 
 @theme {
@@ -18,7 +18,7 @@
   }
 }
 
-/* 🎨 Ambient Glow Effects */
+
 .ambient-glow {
   @apply fixed pointer-events-none blur-[120px] rounded-full mix-blend-screen opacity-20 z-0;
 }

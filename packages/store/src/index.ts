@@ -45,11 +45,11 @@ export const useAppStore = create<AppState>()(
       setTrack: (p) => set({ currentTrack: p, isPlaying: true }),
       togglePlay: () => set((state) => ({ isPlaying: !state.isPlaying })),
       setIsPlaying: (s) => set({ isPlaying: s }),
+      closePlayer: () => set({ currentTrack: null, isPlaying: false }),
     }),
     { 
       name: 'pod-pro-storage',
-      // نحفظ فقط البيانات التي نريدها أن تستمر بعد تحديث الصفحة
-      partialize: (state) => ({ 
+     partialize: (state) => ({ 
         favorites: state.favorites, 
         recentSearches: state.recentSearches, 
         recentlyViewed: state.recentlyViewed 

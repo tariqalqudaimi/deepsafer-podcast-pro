@@ -3,16 +3,10 @@ import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { podcastApi } from "@repo/api";
 
-<<<<<<< Updated upstream
 // استيراد المكونات المقسمة
-import { PodcastHero } from "../../(modules)/podcast/components/ditalspodcast/PodcastHero";
-import { EpisodeItem } from "../../(modules)/podcast/components/EpisodeItem";
-import { PodcastSidebar } from "../../(modules)/podcast/components/ditalspodcast/PodcastSidebar";
-=======
 import { PodcastHero } from "../../(modules)/podcast/components/page/PodcastHero";
-import { EpisodeItem } from "../../(modules)/podcast/components/EpisodeItem";
+import { EpisodeItem } from "../../(modules)/podcast/components/page/EpisodeItem";
 import { PodcastSidebar } from "../../(modules)/podcast/components/page/PodcastSidebar";
->>>>>>> Stashed changes
 
 export default function PodcastDetailPage() {
   const { id } = useParams();
@@ -24,11 +18,7 @@ export default function PodcastDetailPage() {
     enabled: !!id,
   });
 
-<<<<<<< Updated upstream
-  // معالجة حالات التحميل والخطأ
-=======
-
->>>>>>> Stashed changes
+  
   if (isLoading) return (
     <div className="flex items-center justify-center min-h-[60vh] animate-pulse">
       <div className="text-blue-500 font-black text-2xl tracking-widest uppercase italic">Loading Dimension...</div>
@@ -46,23 +36,13 @@ export default function PodcastDetailPage() {
 
   return (
     <div className="space-y-16 animate-in fade-in zoom-in-95 duration-1000 pb-40">
-<<<<<<< Updated upstream
-      {/* الجزء العلوي: الهيدر */}
+      
       <PodcastHero show={show} />
 
-      {/* التقسيم الشبكي: الحلقات يمين، والمعلومات يسار */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-16 border-t border-white/5 pt-16">
-        
-        {/* قائمة الحلقات */}
-=======
      
-      <PodcastHero show={show} />
-
-   
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-16 border-t border-white/5 pt-16">
         
-       
->>>>>>> Stashed changes
+   
         <div className="xl:col-span-2 space-y-8">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-black italic">Episodes Fleet</h2>
@@ -80,11 +60,7 @@ export default function PodcastDetailPage() {
           </div>
         </div>
 
-<<<<<<< Updated upstream
-        {/* الشريط الجانبي */}
-=======
-   
->>>>>>> Stashed changes
+       
         <aside>
           <PodcastSidebar show={show} />
         </aside>

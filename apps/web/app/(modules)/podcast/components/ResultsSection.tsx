@@ -19,7 +19,7 @@ export function ResultsSection({ term, podcasts, visibleCount, isLoading, isErro
 
   return (
     <section className="relative z-10">
-      {/* 1. Section Header */}
+     
       <div className="flex items-center justify-between border-b border-white/5 pb-6 mb-10">
         <h2 className="text-2xl font-black italic flex items-center gap-3">
           <Zap className="text-blue-500" size={20} />
@@ -30,7 +30,7 @@ export function ResultsSection({ term, podcasts, visibleCount, isLoading, isErro
         </span>
       </div>
 
-      {/* 2. States Handling */}
+     
       {isLoading ? (
         <PodcastSkeleton />
       ) : isError ? (
@@ -39,7 +39,7 @@ export function ResultsSection({ term, podcasts, visibleCount, isLoading, isErro
         </div>
       ) : (
         <>
-          {/* 3. Bento Grid */}
+         
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[340px] animate-in fade-in duration-700">
             {visiblePodcasts.map((p, i) => (
               <BentoPodcastCard key={p.collectionId} podcast={p} isLarge={i === 0 || i === 7} />

@@ -1,159 +1,96 @@
-# Turborepo starter
 
-This Turborepo starter is maintained by the Turborepo core team.
+# 🎧 DeepSonic - لوحة تحكم للبحث عن البودكاست
 
-## Using this example
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-EF4444?style=for-the-badge&logo=turborepo)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_v4.2-Spatial_UI-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Zustand](https://img.shields.io/badge/Zustand-Persist-blue?style=for-the-badge)
 
-Run the following command:
+يحتوي هذا المستودع (Repository) على الحل البرمجي لـ **تحدي المطورين (DeepSafer Frontend Challenge)**. تم تصميم المشروع وبناؤه كنظام متكامل (Enterprise-grade System) باستخدام أحدث تقنيات الويب، مع التركيز على الأداء، التوسع، وتجربة المستخدم (UI/UX) الاستثنائية التي أطلقت عليها اسم "Spatial UI".
 
-```sh
-npx create-turbo@latest
-```
+> **ملاحظة بخصوص شروط التقييم:** التزاماً تاماً بالشروط المذكورة في ورقة الاختبار، تم بناء هذا النظام **يدوياً بنسبة 100% دون استخدام أي أدوات للذكاء الاصطناعي (AI Tools)**. تم الاعتماد فقط على البحث وقراءة التوثيق الرسمي (Documentation) لحل المشكلات المعمارية المعقدة.
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## 🚀 1. طريقة تشغيل المشروع (عبر Turborepo)
 
-### Apps and Packages
+يعتمد هذا المشروع على **pnpm** كمدير للحزم، و **Turborepo** لإدارة مساحة العمل (Workspace).
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+**المتطلبات الأساسية:** يرجى التأكد من تثبيت `Node.js` و `pnpm` على جهازك.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1. **تثبيت الحزم (Dependencies):**
+   قم بفتح موجه الأوامر (Terminal) في المسار الرئيسي للمشروع (الجذر) ونفذ الأمر:
+   ```bash
+   pnpm install
 
-### Utilities
+تشغيل خادم التطوير (Development Server):
 
-This Turborepo has some additional tools already setup for you:
+code
+Bash
+download
+content_copy
+expand_less
+pnpm dev
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+افتح الرابط http://localhost:3000 في متصفحك لتجربة التطبيق.
 
-### Build
+🏗️ 2. الهيكلية المعمارية (Architecture)
 
-To build all apps and packages, run the following command:
+بدلاً من بناء تطبيق React تقليدي، قررت استخدام معمارية Micro-Frontend / Monorepo، مما يعكس طريقة بناء المشاريع في الشركات الكبرى (مثل Vercel). هذا يفصل "المنطق البرمجي" عن "واجهة المستخدم".
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+هيكل المجلدات (Directory Structure):
 
-```sh
-cd my-turborepo
-turbo build
-```
+apps/web: تطبيق Next.js الأساسي. يعمل كـ "مُنسق" (Orchestrator) يستورد ويستخدم الحزم الأخرى.
 
-Without global `turbo`, use your package manager:
+packages/api: حزمة مستقلة تحتوي على منطق جلب البيانات من (iTunes API).
 
-```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+packages/store: عقل التطبيق. تحتوي على حالة Zustand المشتركة.
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+packages/types: المصدر الوحيد (Single Source of Truth) لتعريفات TypeScript (Interfaces).
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+packages/ui: نظام التصميم المشترك والمجهز للعمل مع محرك Tailwind CSS v4.2.
 
-```sh
-turbo build --filter=docs
-```
+🧠 3. إدارة الحالة (Zustand Store)
 
-Without global `turbo`:
+تم استخدام Zustand لإدارة حالة التطبيق لكونه خفيفاً، سريعاً، ولا يتطلب كوداً معقداً (Zero-boilerplate).
 
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+تم تقسيم الـ Store (useAppStore) ليدير ثلاثة أجزاء رئيسية:
 
-### Develop
+المشغل العالمي (Global Player): يدير حالة الصوت (currentTrack, isPlaying) مما يضمن عدم انقطاع الصوت عند التنقل بين الصفحات.
 
-To develop all apps and packages, run the following command:
+تفضيلات المستخدم (User Preferences): يدير مصفوفات (favorites, recentlyViewed, recentSearches) لتقديم تجربة مخصصة لكل مستخدم.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+الحفظ الدائم (Persistence Middleware): بناءً على طلب التقييم، استخدمت persist middleware من Zustand مع دالة partialize مخصصة، لضمان حفظ بيانات "المفضلة وسجل البحث" فقط في الـ LocalStorage، مع تجاهل الحالات المؤقتة (مثل المشغل الصوتي) لمنع الأخطاء عند إعادة تحميل الصفحة.
 
-```sh
-cd my-turborepo
-turbo dev
-```
+⚠️ 4. التحديات التقنية وحلولها (Difficulties & Solutions)
 
-Without global `turbo`, use your package manager:
+خلال مرحلة التطوير، واجهت تحديات معمارية وبرمجية، وقمت بحلها بأساليب هندسية معتمدة:
 
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+التحدي الأول: مشاكل الـ Pagination في iTunes API
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+المشكلة: واجهة iTunes API لا تدعم ميزة الإزاحة (offset) بشكل موثوق في نقطة البحث /search. طلب صفحات جديدة غالباً ما يعيد نتائج مكررة أو فارغة، مما يكسر تجربة التحميل المتتابع (Infinite Scroll).
+الحل (Client-Side Pagination): قمت بتجاوز هذه المشكلة عن طريق طلب 100 نتيجة دفعة واحدة وتخزينها في كاش React Query. ثم قمت بعمل "تقسيم محلي" (Client-Side Pagination) يعرض 20 نتيجة فقط ويزيدها عند الضغط على زر "Load More". هذا جعل التطبيق سريعاً جداً (Zero-Latency) ووفر استهلاك الشبكة.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+التحدي الثاني: تكرار المفاتيح (React Key Duplication)
 
-```sh
-turbo dev --filter=web
-```
+المشكلة: أحياناً تعيد واجهة آبل نفس البودكاست مرتين في نفس مصفوفة البحث، مما يسبب تحذيرات Duplicate Keys في React ويؤثر على أداء الـ Virtual DOM.
+الحل (Deduplication): قمت ببناء خوارزمية إزالة تكرار باستخدام كائن Map في الجافاسكريبت. يتم تنقية المصفوفة بناءً على collectionId الفريد قبل وصولها لطبقة العرض (UI Component)، مما يضمن استقراراً بنسبة 100%.
 
-Without global `turbo`:
+التحدي الثالث: انقطاع الصوت عند التنقل
 
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+المشكلة: في تطبيقات Next.js التقليدية، التنقل من صفحة لأخرى يقوم بتدمير مكون المشغل الصوتي (<audio>) وإعادة بنائه، مما يوقف التشغيل.
+الحل: قمت بتجريد المشغل الصوتي إلى مكون عائم (FloatingPlayer) ووضعه في ملف التخطيط الجذري (layout.tsx). هذا جعل المشغل مستقلاً تماماً عن الصفحات الداخلية، ليعمل بشكل مستمر (Seamless Playback).
 
-### Remote Caching
+🔮 5. اقتراحات للتحسين المستقبلي (Future Optimizations)
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+لو أتيح لي المزيد من الوقت، سأقوم بتطبيق التحسينات التالية:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+بناء وسيط (BFF - Backend For Frontend): بدلاً من الاتصال بواجهة iTunes مباشرة من المتصفح، سأبني Next.js API Route ليعمل كوسيط. هذا يحل مشاكل الـ CORS ويسمح بتنقية وتشكيل البيانات في السيرفر قبل إرسالها للمستخدم.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+معالجة الـ RSS (RSS Feed Parsing): التطبيق حالياً يعتمد على خاصية previewUrl. في تطبيق حقيقي، سأبني خدمة (Service) لقراءة ملف الـ XML الخاص بـ feedUrl لجلب روابط الحلقات الكاملة بصيغة .mp3.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+العرض الوهمي (Virtualization): إذا قام المستخدم بإضافة مئات البودكاست للمفضلة، سأستخدم مكتبة مثل react-virtualized لاقتصار رسم الكروت في الـ DOM على الكروت المرئية فقط على الشاشة، لضمان أعلى أداء ممكن.
 
-```sh
-cd my-turborepo
-turbo login
-```
+تم البناء بشغف وهندسة دقيقة لتحدي DeepSafer.
 
-Without global `turbo`, use your package manager:
 
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
