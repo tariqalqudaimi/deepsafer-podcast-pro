@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search, Heart, Mic2 } from "lucide-react";
-import { useAppStore } from "@repo/store"; // الربط مع الحزمة المشتركة
+import { useAppStore } from "@repo/store"; 
 
 export function FloatingNav() {
   const pathname = usePathname();
@@ -10,7 +10,7 @@ export function FloatingNav() {
 
   return (
     <>
-      {/* 🖥️ Desktop Navigation (Left Floating Bar) */}
+ 
       <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col items-center gap-8 py-8 px-4 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-full shadow-2xl">
         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/50 mb-4">
           <Mic2 size={24} className="text-white" />
@@ -28,7 +28,7 @@ export function FloatingNav() {
         </div>
       </nav>
 
-      {/* 📱 Mobile Navigation (Bottom Bar) */}
+    
       <nav className="fixed bottom-0 left-0 right-0 z-[60] xl:hidden flex items-center justify-around py-4 bg-black/80 backdrop-blur-2xl border-t border-white/10">
         <Link href="/" className={`flex flex-col items-center gap-1 ${pathname === '/' ? 'text-blue-500' : 'text-white/40'}`}>
           <Search size={22} />
