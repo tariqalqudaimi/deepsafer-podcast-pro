@@ -16,11 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-[#050505] text-white h-screen overflow-hidden selection:bg-blue-500/30 antialiased`}>
         <Providers>
-          {/* Ambient Cosmic Backgrounds */}
+        
           <div className="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none z-0" />
           <div className="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none z-0" />
 
-          {/* Core UI Components */}
+        
           <FloatingNav />
           
           <main className="absolute inset-0 xl:pl-[120px] overflow-y-auto scroll-smooth custom-scrollbar z-10">

@@ -1,6 +1,11 @@
 "use client";
+<<<<<<< Updated upstream
 import { useAppStore } from "@repo/store"; // الربط مع الحزمة المشتركة
 import { Play, Pause, Heart, Volume2 } from "lucide-react";
+=======
+import { useAppStore } from "@repo/store";
+import { Play, Pause, Heart, X } from "lucide-react"; 
+>>>>>>> Stashed changes
 import { useEffect, useRef } from "react";
 
 export function FloatingPlayer() {
