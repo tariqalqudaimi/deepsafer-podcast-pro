@@ -11,10 +11,20 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@repo/api": "workspace:*",
+    "@repo/store": "workspace:*",
+    "@repo/types": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@tanstack/react-query": "^5.90.21",
+    "lucide-react": "^0.577.0",
     "next": "16.1.5",
+    "postcss": "^8.5.8",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.7",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.0.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

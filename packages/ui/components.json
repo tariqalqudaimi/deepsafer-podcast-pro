@@ -12,6 +12,7 @@
   },
   "aliases": {
     "components": "@repo/ui/components",
+     "./lib/*": "./src/lib/*.ts",
     "utils": "@repo/ui/lib/utils"
   }
 }
