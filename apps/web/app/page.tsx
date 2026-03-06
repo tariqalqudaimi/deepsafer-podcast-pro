@@ -1,5 +1,6 @@
 "use client";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { useState, useEffect } from "react";
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import { podcastApi } from "@repo/api";
@@ -151,6 +152,32 @@ export default function DeepSonicDashboard() {
       <HeroHeader term={term} setTerm={setTerm} />
 
     
+=======
+
+import { useState, useEffect } from "react";
+import { useDashboardPodcasts } from "./(modules)/podcast/hooks/useDashboardPodcasts";
+import { HeroHeader } from "./(modules)/podcast/components/HeroHeader";
+import { ResultsSection } from "./(modules)/podcast/components/ResultsSection";
+import { RecentlyViewed } from "./_components/RecentlyViewed";
+
+export default function DeepSonicDashboard() {
+
+  const[term, setTerm] = useState("");
+  
+  
+  const { podcasts, isLoading, isError } = useDashboardPodcasts(term);
+
+  
+  const[visibleCount, setVisibleCount] = useState(20);
+  useEffect(() => setVisibleCount(20), [term]); 
+
+  return (
+    <div className="space-y-16 pb-40">
+     
+      <HeroHeader term={term} setTerm={setTerm} />
+
+     
+>>>>>>> Stashed changes
       {!term && <RecentlyViewed />}
 
      
@@ -162,6 +189,9 @@ export default function DeepSonicDashboard() {
         isError={isError}
         onLoadMore={() => setVisibleCount((prev) => prev + 20)}
       />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </div>
   );
