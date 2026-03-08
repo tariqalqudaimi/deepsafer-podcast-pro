@@ -51,6 +51,7 @@ export const useAppStore = create<AppState>()(
       name: 'pod-pro-storage',
      partialize: (state) => ({ 
         favorites: state.favorites, 
+        
         recentSearches: state.recentSearches, 
         recentlyViewed: state.recentlyViewed 
       }),

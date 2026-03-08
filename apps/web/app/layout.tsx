@@ -7,7 +7,7 @@ import { FloatingPlayer } from "./_components/floating-player";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "DeepSonic | Future of Audio",
+  title: "DeepSefar | Future of Audio",
   description: "Bento-style podcast dashboard for the modern explorer",
 };
 

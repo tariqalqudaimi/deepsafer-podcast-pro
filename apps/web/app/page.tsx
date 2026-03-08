@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Zap } from "lucide-react";
+import {  Zap } from "lucide-react";
 
 import { useAppStore } from "@repo/store";
 import { useDashboardPodcasts } from "./(modules)/podcast/hooks/useDashboardPodcasts";
@@ -79,8 +79,6 @@ export default function DeepSonicDashboard() {
                 />
               ))}
             </div>
-
-            
             {hasMore && (
               <div className="mt-24 flex justify-center pb-20">
                 <button 

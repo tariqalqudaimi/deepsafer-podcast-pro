@@ -3,7 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { podcastApi } from "@repo/api";
 
-// استيراد المكونات المقسمة
+
 import { PodcastHero } from "../../(modules)/podcast/components/page/PodcastHero";
 import { EpisodeItem } from "../../(modules)/podcast/components/page/EpisodeItem";
 import { PodcastSidebar } from "../../(modules)/podcast/components/page/PodcastSidebar";

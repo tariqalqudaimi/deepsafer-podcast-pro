@@ -12,7 +12,7 @@ interface Props {
 export function EpisodeItem({ episode, show, index }: Props) {
   const { currentTrack, isPlaying, setTrack, togglePlay } = useAppStore();
   
-  const isActive = currentTrack?.url === episode.previewUrl;
+  const isActive = currentTrack?.previewUrl === episode.previewUrl;
   const isPlayingNow = isActive && isPlaying;
 
   const handlePlay = () => {
